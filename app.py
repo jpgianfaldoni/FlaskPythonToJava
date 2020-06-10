@@ -26,7 +26,11 @@ def get_text_prediction():
     print(json)
     if len(json['text']) == 0:
         return jsonify({'error': 'invalid input'})
-    numero = int(json['text'])
+    # A variável "json" tem os dados recebidos, basta tratá-los como desejado...
+    
+    # Blá Blá JSON Blá Blá
+
+    # E definir o retorno abaixo. O Retorno será armazenado como Double no Java, e será entendido como a chance de desenvolver um quadro severo.
     retorno = random.randint(10,100)
     return jsonify({'value': retorno})
 
