@@ -3,6 +3,7 @@
 # Required Imports
 import os
 from flask import Flask, request, jsonify
+import random
 
 
 # Initialize Flask App
@@ -26,7 +27,7 @@ def get_text_prediction():
     if len(json['text']) == 0:
         return jsonify({'error': 'invalid input'})
     numero = int(json['text'])
-    retorno = numero + 1
+    retorno = random.randint(10,100)
     return jsonify({'value': retorno})
 
 
