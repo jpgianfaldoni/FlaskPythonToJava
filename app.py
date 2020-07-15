@@ -51,7 +51,7 @@ def imdbRatingDesc():
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     cursor.execute("SELECT rowid,* FROM movies ORDER BY poster DESC limit 10")
-    movies = str(cursor.fetchall())
+    movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
 @app.route('/api/imdbRatingAsc')
@@ -60,7 +60,7 @@ def imdbRatingAsc():
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     cursor.execute("SELECT rowid,* FROM movies ORDER BY poster limit 10")
-    movies = str(cursor.fetchall())
+    movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
 @app.route('/api/NameAsc')
@@ -69,7 +69,7 @@ def nameAsc():
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit 10")
-    movies = str(cursor.fetchall())
+    movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
 
@@ -79,7 +79,7 @@ def nameDesc():
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit 10")
-    movies = str(cursor.fetchall())
+    movies = cursor.fetchall()
     return jsonify({'Search': movies})
 port = int(os.environ.get('PORT', 8080))
 
