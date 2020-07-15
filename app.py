@@ -4,6 +4,9 @@
 import os
 from flask import Flask, request, jsonify
 import random
+import requests
+import json 
+import sqlite3
 
 
 # Initialize Flask App
