@@ -3,6 +3,7 @@
 # Required Imports
 import os
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 import random
 import json 
 import sqlite3
@@ -10,6 +11,9 @@ import sqlite3
 
 # Initialize Flask App
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 @app.route('/')
 def nao_entre_em_panico():
@@ -41,6 +45,7 @@ def dict_factory(cursor, row):
 
 
 @app.route('/api/imdbRatingDesc')
+@cross_origin()
 def imdbRatingDesc():
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
