@@ -31,6 +31,51 @@ def get_text_prediction():
     return jsonify({'value': retorno})
 
 
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
+
+
+@app.route('/api/imdbRatingDesc')
+def imdbRatingDesc():
+    conn = sqlite3.connect('movies.db')
+    conn.row_factory = dict_factory
+    cursor = conn.cursor()
+    cursor.execute("SELECT rowid,* FROM movies ORDER BY poster DESC limit 10")
+    movies = str(cursor.fetchall())
+    return movies
+
+@app.route('/api/imdbRatingAsc')
+def imdbRatingAsc():
+    conn = sqlite3.connect('movies.db')
+    conn.row_factory = dict_factory
+    cursor = conn.cursor()
+    cursor.execute("SELECT rowid,* FROM movies ORDER BY poster limit 10")
+    movies = str(cursor.fetchall())
+    return movies
+
+@app.route('/api/NameAsc')
+def nameAsc():
+    conn = sqlite3.connect('movies.db')
+    conn.row_factory = dict_factory
+    cursor = conn.cursor()
+    cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit 10")
+    movies = str(cursor.fetchall())
+    return movies
+
+
+@app.route('/api/NameDesc')
+def nameDesc():
+    conn = sqlite3.connect('movies.db')
+    conn.row_factory = dict_factory
+    cursor = conn.cursor()
+    cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit 10")
+    movies = str(cursor.fetchall())
+    return movies
 port = int(os.environ.get('PORT', 8080))
+
+
 if __name__ == '__main__':
     app.run(threaded=True, host='0.0.0.0', port=port)
