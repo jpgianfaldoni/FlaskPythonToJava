@@ -16,6 +16,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 @app.route('/')
+@cross_origin()
 def nao_entre_em_panico():
     if request.headers.get('Authorization') == '42':
         return jsonify({"42": "a resposta para a vida, o universo e tudo mais"})
@@ -45,7 +46,6 @@ def dict_factory(cursor, row):
 
 
 @app.route('/api/imdbRatingDesc')
-@cross_origin()
 def imdbRatingDesc():
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
