@@ -84,5 +84,18 @@ def nameDesc():
 port = int(os.environ.get('PORT', 8080))
 
 
+@app.route('/<name>')
+def nameSearch(name):
+    movie = "%" + name + "%"
+    conn = sqlite3.connect('movies.db')
+    conn.row_factory = dict_factory
+    cursor = conn.cursor()
+    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit 20",(movie,))
+    movies = cursor.fetchall()
+    return jsonify({'Search': movies})
+    
+port = int(os.environ.get('PORT', 8080))
+
+
 if __name__ == '__main__':
     app.run(threaded=True, host='0.0.0.0', port=port)
