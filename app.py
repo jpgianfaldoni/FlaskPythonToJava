@@ -45,44 +45,46 @@ def dict_factory(cursor, row):
     return d
 
 
-@app.route('/api/imdbRatingDesc')
-def imdbRatingDesc():
+@app.route('/<name>/imdbRatingDesc')
+def imdbRatingDesc(name):
+    movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies ORDER BY poster DESC limit 20")
-    movies = cursor.fetchall()
-    return jsonify({'Search': movies})
+    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY poster DESC limit 20",(movie,))
+    movies = str(cursor.fetchall())
+    return movies
 
-@app.route('/api/imdbRatingAsc')
-def imdbRatingAsc():
+@app.route('/<name>/imdbRatingAsc')
+def imdbRatingAsc(name):
+    movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies ORDER BY poster limit 20")
-    movies = cursor.fetchall()
-    return jsonify({'Search': movies})
+    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY poster limit 20",(movie,))
+    movies = str(cursor.fetchall())
+    return movies
 
-@app.route('/api/NameAsc')
-def nameAsc():
+@app.route('/<name>/NameAsc')
+def nameAsc(name):
+    movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit 20")
-    movies = cursor.fetchall()
-    return jsonify({'Search': movies})
+    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name limit 20",(movie,))
+    movies = str(cursor.fetchall())
+    return movies
 
 
-@app.route('/api/NameDesc')
-def nameDesc():
+@app.route('/<name>/NameDesc')
+def nameDesc(name):
+    movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit 20")
-    movies = cursor.fetchall()
-    return jsonify({'Search': movies})
-port = int(os.environ.get('PORT', 8080))
-
+    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit 20",(movie,))
+    movies = str(cursor.fetchall())
+    return movies
 
 @app.route('/<name>')
 def nameSearch(name):
@@ -93,7 +95,7 @@ def nameSearch(name):
     cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit 20",(movie,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
-    
+
 port = int(os.environ.get('PORT', 8080))
 
 
