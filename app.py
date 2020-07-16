@@ -52,8 +52,8 @@ def imdbRatingDesc(name):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY poster DESC limit 20",(movie,))
-    movies = str(cursor.fetchall())
-    return movies
+    movies = cursor.fetchall()
+    return jsonify({'Search': movies})
 
 @app.route('/<name>/imdbRatingAsc')
 def imdbRatingAsc(name):
@@ -62,8 +62,8 @@ def imdbRatingAsc(name):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY poster limit 20",(movie,))
-    movies = str(cursor.fetchall())
-    return movies
+    movies = cursor.fetchall()
+    return jsonify({'Search': movies})
 
 @app.route('/<name>/NameAsc')
 def nameAsc(name):
@@ -72,8 +72,8 @@ def nameAsc(name):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name limit 20",(movie,))
-    movies = str(cursor.fetchall())
-    return movies
+    movies = cursor.fetchall()
+    return jsonify({'Search': movies})
 
 
 @app.route('/<name>/NameDesc')
@@ -83,8 +83,8 @@ def nameDesc(name):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit 20",(movie,))
-    movies = str(cursor.fetchall())
-    return movies
+    movies = cursor.fetchall()
+    return jsonify({'Search': movies})
 
 @app.route('/<name>')
 def nameSearch(name):
