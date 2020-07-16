@@ -50,7 +50,7 @@ def imdbRatingDesc():
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies ORDER BY poster DESC limit 10")
+    cursor.execute("SELECT rowid,* FROM movies ORDER BY poster DESC limit 20")
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
@@ -59,7 +59,7 @@ def imdbRatingAsc():
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies ORDER BY poster limit 10")
+    cursor.execute("SELECT rowid,* FROM movies ORDER BY poster limit 20")
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
@@ -68,7 +68,7 @@ def nameAsc():
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit 10")
+    cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit 20")
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
@@ -78,7 +78,7 @@ def nameDesc():
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit 10")
+    cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit 20")
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 port = int(os.environ.get('PORT', 8080))
