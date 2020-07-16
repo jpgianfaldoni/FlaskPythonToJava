@@ -51,7 +51,7 @@ def imdbRatingDesc(name):
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY poster DESC limit 20",(movie,))
+    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating DESC limit 20",(movie,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
@@ -61,7 +61,7 @@ def imdbRatingAsc(name):
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY poster limit 20",(movie,))
+    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating limit 20",(movie,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
