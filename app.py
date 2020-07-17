@@ -45,7 +45,7 @@ def dict_factory(cursor, row):
     return d
 
 
-@app.route('/<name>//imdbRatingDesc')
+@app.route('/<name>/imdbRatingDesc')
 def imdbRatingDesc(name):
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
@@ -58,7 +58,7 @@ def imdbRatingDesc(name):
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
-@app.route('/<name>//imdbRatingAsc')
+@app.route('/<name>/imdbRatingAsc')
 def imdbRatingAsc(name,):
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
