@@ -88,7 +88,7 @@ def nameAsc(name):
 
 
 @app.route('/<name>/NameDesc')
-def nameDesc(name,page):
+def nameDesc(name):
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
