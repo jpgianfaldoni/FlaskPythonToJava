@@ -45,9 +45,8 @@ def dict_factory(cursor, row):
     return d
 
 
-@app.route('/<name>/<page>/imdbRatingDesc')
-def imdbRatingDesc(name,page):
-    pagina = int(page) * 20
+@app.route('/<name>//imdbRatingDesc')
+def imdbRatingDesc(name):
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
@@ -55,13 +54,12 @@ def imdbRatingDesc(name,page):
     if name == "all":
         cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating DESC limit ?, 20")
     else:
-        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating DESC limit ?, 20",(movie,pagina))
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating DESC limit ?, 20",(movie,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
-@app.route('/<name>/<page>/imdbRatingAsc')
-def imdbRatingAsc(name,page):
-    pagina = int(page) * 20
+@app.route('/<name>//imdbRatingAsc')
+def imdbRatingAsc(name,):
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
@@ -69,14 +67,13 @@ def imdbRatingAsc(name,page):
     if name == "all":
         cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating limit ?, 20")
     else:
-        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating limit ?, 20",(movie,pagina))
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating limit ?, 20",(movie,))
 
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
-@app.route('/<name>/<page>/NameAsc')
-def nameAsc(name,page):
-    pagina = int(page) * 20
+@app.route('/<name>/NameAsc')
+def nameAsc(name):
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
@@ -84,15 +81,14 @@ def nameAsc(name,page):
     if name == "all":
         cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit ?, 20")
     else:
-        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name limit ?, 20",(movie,pagina))
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name limit ?, 20",(movie,))
 
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
 
-@app.route('/<name>/<page>/NameDesc')
+@app.route('/<name>/NameDesc')
 def nameDesc(name,page):
-    pagina = int(page) * 20
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
@@ -100,7 +96,7 @@ def nameDesc(name,page):
     if name == "all":
         cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit ?, 20")
     else:
-        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit ?, 20",(movie,pagina))
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit ?, 20",(movie,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
