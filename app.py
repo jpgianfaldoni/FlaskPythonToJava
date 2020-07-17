@@ -96,7 +96,10 @@ def nameSearch(name):
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit 20",(movie,))
+    if name == "all":
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit 20",(movie,))
+    else:
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit 20",(movie,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
@@ -107,7 +110,10 @@ def test(name,page):
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit ?, 20",(movie,pagina))
+    if name == "all":
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit ?, 20",(movie,pagina))
+    else:
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit ?, 20",(movie,pagina))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
