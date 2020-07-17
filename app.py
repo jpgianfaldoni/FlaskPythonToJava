@@ -53,7 +53,7 @@ def imdbRatingDesc(name,page):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if name == "all":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating DESC limit ?, 20",(movie,pagina))
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating DESC limit ?, 20")
     else:
         cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating DESC limit ?, 20",(movie,pagina))
     movies = cursor.fetchall()
@@ -67,7 +67,7 @@ def imdbRatingAsc(name,page):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if name == "all":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating limit ?, 20",(movie,pagina))
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating limit ?, 20")
     else:
         cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating limit ?, 20",(movie,pagina))
 
@@ -82,7 +82,7 @@ def nameAsc(name,page):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if name == "all":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit ?, 20",(movie,pagina))
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit ?, 20")
     else:
         cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name limit ?, 20",(movie,pagina))
 
@@ -98,7 +98,7 @@ def nameDesc(name,page):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if name == "all":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit ?, 20",(movie,pagina))
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit ?, 20")
     else:
         cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit ?, 20",(movie,pagina))
     movies = cursor.fetchall()
@@ -111,7 +111,7 @@ def nameSearch(name):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if name == "all":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit 20",(movie,))
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit 20")
     else:
         cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit 20",(movie,))
     movies = cursor.fetchall()
@@ -125,7 +125,7 @@ def test(name,page):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if name == "all":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit ?, 20",(movie,pagina))
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit ?, 20",(pagina,))
     else:
         cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit ?, 20",(movie,pagina))
     movies = cursor.fetchall()
