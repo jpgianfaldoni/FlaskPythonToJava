@@ -91,8 +91,7 @@ def nameDesc(name,page):
     return jsonify({'Search': movies})
 
 @app.route('/<name>')
-def nameSearch(name,page):
-    pagina = int(page) * 20
+def nameSearch(name):
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
