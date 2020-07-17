@@ -45,8 +45,9 @@ def dict_factory(cursor, row):
     return d
 
 
-@app.route('/<name>/imdbRatingDesc')
-def imdbRatingDesc(name):
+@app.route('/<name>/<page>/imdbRatingDesc')
+def imdbRatingDesc(name,page):
+    pagina = int(page) * 20
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
@@ -55,8 +56,9 @@ def imdbRatingDesc(name):
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
-@app.route('/<name>/imdbRatingAsc')
-def imdbRatingAsc(name):
+@app.route('/<name>/<page>/imdbRatingAsc')
+def imdbRatingAsc(name,page):
+    pagina = int(page) * 20
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
@@ -65,8 +67,9 @@ def imdbRatingAsc(name):
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
-@app.route('/<name>/NameAsc')
-def nameAsc(name):
+@app.route('/<name>/<page>/NameAsc')
+def nameAsc(name,page):
+    pagina = int(page) * 20
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
@@ -76,8 +79,9 @@ def nameAsc(name):
     return jsonify({'Search': movies})
 
 
-@app.route('/<name>/NameDesc')
-def nameDesc(name):
+@app.route('/<name>/<page>/NameDesc')
+def nameDesc(name,page):
+    pagina = int(page) * 20
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
@@ -87,7 +91,8 @@ def nameDesc(name):
     return jsonify({'Search': movies})
 
 @app.route('/<name>')
-def nameSearch(name):
+def nameSearch(name,page):
+    pagina = int(page) * 20
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
