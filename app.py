@@ -96,6 +96,16 @@ def nameSearch(name):
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
+@app.route('/<name>/Test')
+def test(name):
+    movie = "%" + name + "%"
+    conn = sqlite3.connect('movies.db')
+    conn.row_factory = dict_factory
+    cursor = conn.cursor()
+    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit 20, 20",(movie,))
+    movies = cursor.fetchall()
+    return jsonify({'Search': movies})
+
 port = int(os.environ.get('PORT', 8080))
 
 
