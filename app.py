@@ -98,7 +98,7 @@ def nameSearch(name):
 
 @app.route('/<name>/<page>/Next')
 def test(name,page):
-    pagina = page * 20
+    pagina = int(page) * 20
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
