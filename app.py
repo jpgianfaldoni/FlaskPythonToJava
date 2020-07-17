@@ -54,7 +54,7 @@ def imdbRatingDesc(name):
     if name == "all":
         cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating DESC limit ?, 20")
     else:
-        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating DESC limit ?, 20",(movie,))
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating DESC limit 20",(movie,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
@@ -67,7 +67,7 @@ def imdbRatingAsc(name,):
     if name == "all":
         cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating limit ?, 20")
     else:
-        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating limit ?, 20",(movie,))
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating limit 20",(movie,))
 
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
@@ -81,7 +81,7 @@ def nameAsc(name):
     if name == "all":
         cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit ?, 20")
     else:
-        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name limit ?, 20",(movie,))
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name limit 20",(movie,))
 
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
@@ -96,7 +96,7 @@ def nameDesc(name,page):
     if name == "all":
         cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit ?, 20")
     else:
-        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit ?, 20",(movie,))
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit 20",(movie,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
