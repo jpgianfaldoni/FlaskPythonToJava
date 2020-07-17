@@ -52,20 +52,20 @@ def imdbRatingDesc(name):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if name == "all":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating DESC limit ?, 20")
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating DESC limit 20")
     else:
         cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating DESC limit 20",(movie,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
 @app.route('/<name>/imdbRatingAsc')
-def imdbRatingAsc(name,):
+def imdbRatingAsc(name):
     movie = "%" + name + "%"
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if name == "all":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating limit ?, 20")
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY imdb_rating limit 20")
     else:
         cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY imdb_rating limit 20",(movie,))
 
@@ -79,7 +79,7 @@ def nameAsc(name):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if name == "all":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit ?, 20")
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY name limit 20")
     else:
         cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name limit 20",(movie,))
 
@@ -94,7 +94,7 @@ def nameDesc(name):
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if name == "all":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit ?, 20")
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY name DESC limit  20")
     else:
         cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY name DESC limit 20",(movie,))
     movies = cursor.fetchall()
