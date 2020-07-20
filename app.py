@@ -50,14 +50,15 @@ def nextPage():
     movie = "%" + request.args.get('movie') + "%"
     order = request.args.get('order')
     orderType = request.args.get('orderType')
+    genre = "%" + request.args.get('genre') + "%"
     page = int(request.args.get('page')) * 20
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if movie == "%all%":
-        cursor.execute("SELECT rowid,* FROM movies ORDER BY {}".format(order))
+        cursor.execute("SELECT rowid,* FROM movies ORDER BY {} limit 20".format(order))
     else:
-        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? ORDER BY {} {} limit ?, 20".format(order, orderType),(movie,page,))
+        cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? AND genre LIKE ? ORDER BY {} {} limit ?, 20".format( order, orderType),(movie,genre,page,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
