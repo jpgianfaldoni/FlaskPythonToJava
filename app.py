@@ -56,7 +56,7 @@ def nextPage():
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     if request.args.get('genre') == "All":
-        genre = ""
+        genre = "''"
     if movie == "%all%":
         cursor.execute("SELECT rowid,* FROM movies ORDER BY {} limit 20".format(order))
     else:
