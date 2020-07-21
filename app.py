@@ -55,6 +55,8 @@ def nextPage():
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
     cursor = conn.cursor()
+    if genre == "%all%":
+        genre = ""
     if movie == "%all%":
         cursor.execute("SELECT rowid,* FROM movies ORDER BY {} limit 20".format(order))
     else:
