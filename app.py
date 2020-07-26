@@ -49,6 +49,7 @@ def dict_factory(cursor, row):
 def nextPage():
     movie = "%" + request.args.get('movie') + "%"
     order = request.args.get('order')
+    movieType = request.args.get('movieType')
     orderType = request.args.get('orderType')
     genre = "%" + request.args.get('genre') + "%"
     page = int(request.args.get('page')) * 20
@@ -61,7 +62,7 @@ def nextPage():
         genre = "''"
     if request.args.get('movie') == "All":
         movie = "%%"
-    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? AND genre LIKE ? AND actors LIKE ? AND language LIKE ? ORDER BY {} {} limit ?, 20".format( order, orderType),(movie,genre,actors,language,page,))
+    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? AND type LIKE ? AND genre LIKE ? AND actors LIKE ? AND language LIKE ? ORDER BY {} {} limit ?, 20".format( order, orderType),(movie, movieType, genre,actors,language,page,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
