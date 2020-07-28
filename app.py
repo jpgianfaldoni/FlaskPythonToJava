@@ -51,10 +51,10 @@ def nextPage():
     order = request.args.get('order')
     movieType = request.args.get('movieType')
     orderType = request.args.get('orderType')
-    genre =  request.args.get('genre') + "%"
+    genre = "%" + request.args.get('genre') + "%"
     page = int(request.args.get('page')) * 20
     actors = "%" + request.args.get('actors') + "%"
-    language = "%" + request.args.get('language') + "%"
+    language =  request.args.get('language') + "%"
     country = request.args.get('country')
     conn = sqlite3.connect('movies.db')
     conn.row_factory = dict_factory
