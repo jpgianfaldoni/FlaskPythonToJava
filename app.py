@@ -63,7 +63,7 @@ def nextPage():
         genre = "''"
     if request.args.get('movie') == "All":
         movie = "%%"
-    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? AND type LIKE ? AND genre LIKE ? AND actors LIKE ? AND language LIKE ? AND votes > 1000 ORDER BY {} {} limit ?, 40".format( order, orderType),(movie, movieType, genre,actors,language,page,))
+    cursor.execute("SELECT rowid,* FROM movies WHERE name LIKE ? AND type LIKE ? AND genre LIKE ? AND actors LIKE ? AND language LIKE ? AND votes > 2000 ORDER BY {} {} limit ?, 40".format( order, orderType),(movie, movieType, genre,actors,language,page,))
     movies = cursor.fetchall()
     return jsonify({'Search': movies})
 
